@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TodoApp</title>
+</head>
+<body>
+	<h1>My Todo List</h1>
+	<div>
+		Add a new item:
+		<form action="{{url_for('add')}}" method="POST">
+			<input type="text" name="todo_item">
+			<input type="submit" name="add_item" value="Add Item">
+			
+		</form>
+		<div>
+			<h2>Incomplete Activities</h2>
+			<ul>
+				{% for todo in incomplete %}
+				<li>{{ todo.activity }} <a href="{{url_for ('done', id=todo.id)}}"> Done</a> <a href="{{url_for ('remove', id=todo.id)}}"> Remove</a> </li>
+				{% endfor %}
+			</ul>
+
+			<div>
+				<h2>Completed Activities</h2>
+				<ul>
+					{% for todo in complete %}
+					<li>{{ todo.activity }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
